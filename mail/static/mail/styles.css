@@ -1,3 +1,23 @@
 textarea {
     min-height: 400px;
 }
+
+.mails {
+	border: 1px solid black;
+	padding: 8px 12px;
+	cursor: pointer;
+	min-width: 600px;
+}
+
+.mails:hover {
+	box-shadow: 1px 1px 3px 2px rgba(0,0,0,0.13);
+}
+
+.date {
+	float: right;
+	color: #a9acb0;
+}
+.address {
+	display: inline-block;
+	width: 235px;
+}

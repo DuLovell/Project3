@@ -14,6 +14,19 @@
     <div id="emails-view">
     </div>
 
+    <div id="email-page">
+        <div id="email-info">
+            <p id="from"></p>
+            <p id="to"></p>
+            <p id="subject"></p>
+            <p id="timestamp"></p>
+            <button class="btn btn-sm btn-outline-primary" id="reply">Reply</button>
+            <button class="btn btn-sm btn-outline-primary" id="archive">Archive</button>
+            <hr>
+            <p id="text"></p>
+        </div>
+    </div>
+
     <div id="compose-view">
         <h3>New Email</h3>
         <form id="compose-form">
@@ -21,13 +34,13 @@
                 From: <input disabled class="form-control" value="{{ request.user.email }}">
             </div>
             <div class="form-group">
-                To: <input id="compose-recipients" class="form-control">
+                To: <input id="compose-recipients" class="form-control" required>
             </div>
             <div class="form-group">
-                <input class="form-control" id="compose-subject" placeholder="Subject">
+                <input class="form-control" id="compose-subject" placeholder="Subject" required>
             </div>
             <textarea class="form-control" id="compose-body" placeholder="Body"></textarea>
-            <input type="submit" class="btn btn-primary"/>
+            <input type="submit" id="submit" class="btn btn-primary"/>
         </form>
     </div>
 {% endblock %}
