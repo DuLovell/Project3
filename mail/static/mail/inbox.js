@@ -70,7 +70,7 @@ function compose_email() {
     document.querySelector('#compose-subject').value = '';
     document.querySelector('#compose-body').value = '';
 
-    load_mailbox('sent');
+    setTimeout(function() {load_mailbox('sent')}, 700);
     return false;
 
 
