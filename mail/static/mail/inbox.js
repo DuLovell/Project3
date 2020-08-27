@@ -132,31 +132,35 @@ function load_mailbox(mailbox) {
 }
 
 
+function call_archive(letter) {
+  if (letter.archived === false) {
+    fetch(`/emails/${letter.id}`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        archived: true
+      })
+    });
+  }
+  else {
+    fetch(`/emails/${letter.id}`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        archived: false
+      })
+    });
+  }
+  setTimeout(function() { load_mailbox('inbox') }, 700);
+}
+
 function load_letter(letter) {
 
-  function call_archive(letter) {
-    if (letter.archived === false) {
-      fetch(`/emails/${letter.id}`, {
-        method: 'PUT',
-        body: JSON.stringify({
-          archived: true
-        })
-      });
-    }
-    else {
-      fetch(`/emails/${letter.id}`, {
-        method: 'PUT',
-        body: JSON.stringify({
-          archived: false
-        })
-      });
-    }
-  }
+
 
   document.querySelector('#email-page').style.display = 'block';
   document.querySelector('#archive').style.display = 'inline-block';
   document.querySelector('#emails-view').style.display = 'none';
   document.querySelector('#compose-view').style.display = 'none';
+  
 
   if (letter.sender === document.querySelector('h2').innerHTML) {
     document.querySelector('#archive').style.display = 'none';
@@ -182,8 +186,12 @@ function load_letter(letter) {
     compose_email();
 
   })
-  document.querySelector('#archive').addEventListener('click', call_archive(letter));
-  setTimeout(function() { load_mailbox('inbox') }, 700);
+  //document.querySelector('#archive').removeEventListener('click', call_archive);
+
+  //document.querySelector('#archive').addEventListener('click', call_archive(letter));
+  document.querySelector('#archive').onclick = function(){
+    call_archive(letter);
+  }
     
     
 
